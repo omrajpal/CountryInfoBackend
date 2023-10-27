@@ -4,8 +4,24 @@ const cors = require('cors');
 const app = express();
 const PORT = 3001;
 
+// Define allowed origins
+const allowedOrigins = [
+  'https://country-info-website-49l38y7lp-omrajpals-projects.vercel.app',
+  'http://localhost:3000'
+];
+
 // Use CORS middleware
-app.use(cors({ origin: 'https://country-info-website-49l38y7lp-omrajpals-projects.vercel.app' }));
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 // Define the route with the countryName parameter
 app.get('/api/country/:countryName', async (req, res) => {
