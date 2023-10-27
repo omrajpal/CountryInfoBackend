@@ -4,9 +4,9 @@ const cors = require('cors');
 const app = express();
 const PORT = 3001;
 
-// Define allowed origins
 const allowedOrigins = [
   'https://country-info-website-49l38y7lp-omrajpals-projects.vercel.app',
+  'https://country-info-website-i5eu6tqbg-omrajpals-projects.vercel.app', // Add this line
   'http://localhost:3000'
 ];
 
