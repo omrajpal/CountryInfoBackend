@@ -5,7 +5,7 @@ const app = express();
 const PORT = 3001;
 
 // Use CORS middleware
-app.use(cors());
+app.use(cors({ origin: 'https://country-info-website-49l38y7lp-omrajpals-projects.vercel.app' }));
 
 // Define the route with the countryName parameter
 app.get('/api/country/:countryName', async (req, res) => {
